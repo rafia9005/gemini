@@ -47,7 +47,7 @@
       const imageInput = document.querySelector('input[name="chosen-image"]');
 
       imageInput.addEventListener("input", () => {
-        const urlRegex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/i;
+        const urlRegex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp))/i;
         if (urlRegex.test(imageInput.value)) {
           const image = document.getElementById("showImage");
 
