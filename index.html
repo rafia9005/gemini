@@ -1,42 +1,69 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Next Level AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="https://r-code.vercel.app/profile.jpg" type="image/x-icon">
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Baking with Gemini</title>
-</head>
+  <body>
+    <main>
+      <h1>Next Level AI</h1>
+      <p>by rafii.site with gemini ai</p>
+      <form>
+        <div class="center-div">
+          <img src="" id="showImage" width="300px" class="rounded"/>
+        </div>
+        <div class="prompt-box">
+          <label>
+            <input
+              name="chosen-image"
+              type="text"
+              placeholder="Enter image URL"
+              required
+            />
+          </label>
+        </div>
+        <div class="prompt-box">
+          <label>
+            <input
+              name="prompt"
+              placeholder="Apa yang ingin anda cari tahu tentang foto ini?"
+              type="text"
+              required
+              id="promptInput"
+              class="text-[12px]"
+            />
+          </label>
+          <button type="submit" class="bg-blue-500">Go</button>
+        </div>
+      </form>
+      <p class="output"></p>
+    </main>
 
-<body>
-  <main>
-    <h1>Baking with Gemini</h1>
-    <form>
-      <div class="image-picker">
-        <label class="image-choice">
-          <input type="radio" checked name="chosen-image" value="/baked_goods_1.jpg">
-          <img src="/baked_goods_1.jpg">
-        </label>
-        <label class="image-choice">
-          <input type="radio" name="chosen-image" value="/baked_goods_2.jpg">
-          <img src="/baked_goods_2.jpg">
-        </label>
-        <label class="image-choice">
-          <input type="radio" name="chosen-image" value="/baked_goods_3.jpg">
-          <img src="/baked_goods_3.jpg">
-        </label>
-      </div>
-      <div class="prompt-box">
-        <label>
-          <input name="prompt" placeholder="Enter instructions here" type="text"
-            value="Provide a recipe for the baked goods in the image">
-        </label>
-        <button type="submit">Go</button>
-      </div>
-    </form>
-    <p class="output">(Results will appear here)</p>
-  </main>
+    <script type="module" src="/main.js"></script>
+    <script>
+      const imageInput = document.querySelector('input[name="chosen-image"]');
 
-  <script type="module" src="/main.js"></script>
-</body>
+      imageInput.addEventListener("input", () => {
+        const urlRegex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/i;
+        if (urlRegex.test(imageInput.value)) {
+          const image = document.getElementById("showImage");
 
+          image.src = imageInput.value;
+
+          imageInput.parentNode.insertBefore(image, imageInput);
+        }
+      });
+      const form = document.querySelector("form");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        document.getElementById("promptInput").value = "";
+      });
+    </script>
+  </body>
 </html>
